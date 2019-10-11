@@ -1,0 +1,8 @@
+kafka:
+  bootstrap:
+    address: http://localhost:9092
+  topic: app-test
+  group-id: app
+
+server:
+  port: 9090
