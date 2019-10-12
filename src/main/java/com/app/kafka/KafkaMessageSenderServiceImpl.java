@@ -13,7 +13,7 @@ public class KafkaMessageSenderServiceImpl implements KafkaMessageSenderService{
 
     private KafkaTemplate<String, String> kafkaTemplate;
 
-    @Value("${kafka.topic}")
+    @Value("${spring.kafka.template.default-topic:app-test}")
     private String topic;
 
     @Override
