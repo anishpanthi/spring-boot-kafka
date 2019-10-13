@@ -11,5 +11,5 @@ Make sure you have configured Apache Kafka in your system. Please follow steps d
 
 **2. Using Java Bean Configurations**
 1. Make sure all code are uncommented under `KafkaConsumerConfig, KafkaProducerConfig and KafkaTopicConfig`.
-2. Make sure Line 12-21 is commented and 1-5 are uncommented.
+2. Make sure Line 12-21 is commented and 1-5 are uncommented in `application.yml`.
 3. Run your application and you should be good.
