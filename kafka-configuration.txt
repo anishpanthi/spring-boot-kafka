@@ -1,0 +1,35 @@
+STEPS TO CONFIGURE ZOOKEEPER AND KAFKA SERVER
+
+1. DOWNLOAD ZOOKEEPER AND KAFKA FROM APACHE OFFICIAL SITE.
+2. Rename "zoo_sample.cfg" to "zoo.cfg" under "<installation_dir>\zookeeper-<version>\conf"
+3. Open "zoo.cfg" and modify "dataDir=/tmp/zookeeper" to "dataDir=<installation_dir>\data"
+4. Add ZOOKEEPER_HOME=<installation_dir> in environment variabls and system variables. Also, add Kafka bin location to use its commands from anywhere.
+5. Run "zkserver" in command prompt. ZooKeeper will run in its default port 2181. If everything is good, continue step 6.
+6. Open "server.properties" from "<kafka_installation_dir>\config"
+7. Edit "log.dirs=/tmp/kafka-logs" to "log.dirs=<kafka_installation_dir>\kafka-logs"
+8. If required, make sure to edit "zookeeper.coonect" to point it to ZooKeeper running port number.
+9. Go to Kafka installation directory, and type below command:
+	
+	bin\windows\kafka-server-start.bat config\server.properties
+
+10. If everything is good, then your Kafka Server should be UP and RUNNING.
+11. Create TOPIC: Open new command prompt, and run below command:
+
+	kafka-topics.bat --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic app-test
+
+12. Create PRODUCER: Open new command prompt, and run below command:
+
+	kafka-console-producer.bat --broker-list localhost:9092 --topic app-test
+
+12. Create CONSUMER: Open new command prompt, and run below command:
+
+	kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic test
+
+13. Now, type something in PRODUCER command prompt, and press enter. You should see messeage on CONSUMER command prompt.
+
+14. Some Other Userful Commands:
+	
+	List Topics: kafka-topics.bat --list --zookeeper localhost:2181
+	Describe Topic: kafka-topics.bat --describe --zookeeper localhost:2181 --topic [Topic Name]
+	Read message from the start: kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic [Topic Name] --from-beginning
+	Delete Topic: kafka-run-class.bat kafka.admin.TopicCommand --delete --topic [topic_to_delete] --zookeeper localhost:2181
